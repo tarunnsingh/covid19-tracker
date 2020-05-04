@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchDailyData } from "../../api";
 import { Line, Bar } from "react-chartjs-2";
-
+import { Circle, Heart } from "react-spinners-css";
 import styles from "./Chart.module.css";
 
 const Chart = ({ data, country }) => {
@@ -15,6 +15,14 @@ const Chart = ({ data, country }) => {
     fetchAPI();
   }, []);
 
+  if (!data) {
+    return (
+      <div>
+        <Circle />
+      </div>
+    );
+  }
+
   const lineChart = dailyData ? (
     <Line
       data={{
@@ -24,16 +32,16 @@ const Chart = ({ data, country }) => {
             data: dailyData.map(({ confirmed }) => confirmed),
             label: "Infected",
             borderColor: "#3333ff",
-            fill: true,
+            fill: true
           },
           {
             data: dailyData.map(({ deaths }) => deaths),
             label: "Deaths",
             borderColor: "red",
             backgroundColor: "rgba(255, 0, 0, 0.5)",
-            fill: true,
-          },
-        ],
+            fill: true
+          }
+        ]
       }}
     />
   ) : null;
@@ -48,25 +56,27 @@ const Chart = ({ data, country }) => {
             backgroundColor: [
               "rgba(0, 0, 255, 0.5)",
               "rgba(0, 255, 0, 0.5)",
-              "rgba(255, 0, 0, 0.5)",
+              "rgba(255, 0, 0, 0.5)"
             ],
             data: [
               data.confirmed.value,
               data.recovered.value,
-              data.deaths.value,
-            ],
-          },
-        ],
+              data.deaths.value
+            ]
+          }
+        ]
       }}
       options={{
         legend: { display: false },
-        title: { display: true, text: `Current state in ${country}` },
+        title: { display: true, text: `Current state in ${country}` }
       }}
     />
   ) : null;
 
   return (
-    <div className={styles.container}>{country ? barChart : lineChart}</div>
+    <div className={styles.container}>
+      {country.localeCompare("Worldwide") ? barChart : lineChart}
+    </div>
   );
 };
 

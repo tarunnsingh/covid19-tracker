@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { NativeSelect, FormControl, Menu, MenuItem } from "@material-ui/core";
+import {
+  FormControl,
+  MenuItem,
+  InputLabel,
+  Select,
+  FormHelperText
+} from "@material-ui/core";
 import { fetchCountries } from "../../api";
 import styles from "./CountryPicker.module.css";
 
-const CountryPicker = ({ handleCountryChange }) => {
+const CountryPicker = ({ handleCountryChange, selectedCountry }) => {
   const [fetchedCountries, setfectchedCountries] = useState([]);
-  const [anchorEl, setAnchorEl] = useState(null);
-  console.log(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+  console.log("Selected Country:", selectedCountry);
   useEffect(() => {
     const fetchingCountries = async () => {
       setfectchedCountries(await fetchCountries());
@@ -24,23 +21,25 @@ const CountryPicker = ({ handleCountryChange }) => {
 
   return (
     // <div >
-    <FormControl variant="outlined" onClick={handleClick}>
-      <NativeSelect defaultValue="" onChange={(e) => handleCountryChange(e.target.value)}>
-        <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
-          <MenuItem>Worldwide</MenuItem>
-          {fetchedCountries.map((country, i) => (
-            <MenuItem key={i} value={country} onClick={handleClose}>
-              {country}
-            </MenuItem>
-          ))}
-        </Menu>
-        {/* <option value="">Worldwide</option>
+    <FormControl className={styles.formControl}>
+      <InputLabel id="demo-simple-select-outlined-label">Location</InputLabel>
+      <Select
+        defaultValue="Worldwide"
+        value={selectedCountry}
+        labelId="demo-simple-select-outlined-label"
+        id="demo-simple-select-outlined"
+        onChange={e => handleCountryChange(e.target.value)}
+      >
+        <MenuItem value="Worldwide">Worldwide</MenuItem>
         {fetchedCountries.map((country, i) => (
-          <option key={i} value={country}>
+          <MenuItem key={i} value={country}>
             {country}
-          </option>
-        ))} */}
-      </NativeSelect>
+          </MenuItem>
+        ))}
+      </Select>
+      <FormHelperText>
+        Select a country from the list for it's current stats.
+      </FormHelperText>
     </FormControl>
     // </div>
   );
