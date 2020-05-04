@@ -39,7 +39,8 @@ const Chart = ({ data, country }) => {
             label: "Deaths",
             borderColor: "red",
             backgroundColor: "rgba(255, 0, 0, 0.5)",
-            fill: true
+            fill: true,
+            hoverBackgroundColor: "rgba(240, 20, 0, 0.5)"
           }
         ]
       }}

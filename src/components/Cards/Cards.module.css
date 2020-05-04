@@ -3,17 +3,45 @@
 }
 
 .card {
-  margin: 0 2% !important;
+  margin: 1% 2% !important;
+  -webkit-box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
 }
 
 .infected {
   border-bottom: 10px solid rgba(0, 0, 255, 0.5);
 }
 
+.infected:hover {
+  transform: scale(0.99);
+  background-color: rgba(237, 230, 255, 0.5);
+  transition: 0.5s;
+  animation: ease-in-out;
+}
+
 .recovered {
   border-bottom: 10px solid rgba(0, 255, 0, 0.5);
+}
+.recovered:hover {
+  transform: scale(0.99);
+  background-color: rgba(230, 255, 243, 0.5);
+  transition: 0.5s;
+  animation: ease-in-out;
+}
+
+.recovered:hover:after {
+  transition: 0.5s;
+  background-color: white;
+  animation: ease-in-out;
+  transform: scale(1.5);
 }
 
 .deaths {
   border-bottom: 10px solid rgba(255, 0, 0, 0.5);
+}
+.deaths:hover {
+  transform: scale(0.99);
+  background-color: rgba(255, 230, 245, 0.5);
+  transition: 0.5s;
+  animation: ease-in-out;
 }
