@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
-import { Cards, Chart, CountryPicker, NavBar } from "./components";
-import { Typography } from "@material-ui/core";
+import { Cards, Chart, CountryPicker, NavBar, Particles } from "./components";
 
 import styles from "./App.module.css";
 import { fetchData } from "./api";
@@ -29,6 +28,7 @@ class App extends React.Component {
       <Fragment>
         <NavBar />
         <div className={styles.container}>
+          {/* <Particles className={styles.particles}/> */}
           <Cards data={data} />
           <CountryPicker
             handleCountryChange={this.handleCountryChange}

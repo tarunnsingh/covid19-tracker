@@ -4,9 +4,9 @@ import CountUp from "react-countup";
 import moment from "moment";
 import cx from "classnames";
 import { Circle, Heart } from "react-spinners-css";
-import Particles from "react-particles-js";
-
 import styles from "./Cards.module.css";
+import Particles from "react-particles-js";
+const particles = require("./particles.json");
 
 const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   if (!confirmed) {
@@ -27,7 +27,10 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
           md={3}
           className={cx(styles.card, styles.infected)}
         >
+        
           <CardContent>
+            
+            
             <Typography color="textSecondary" gutterBottom>
               Infected
             </Typography>

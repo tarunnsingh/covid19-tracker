@@ -17,7 +17,7 @@
     "react-countup": "^4.3.3",
     "react-dom": "^16.13.1",
     "react-flags-select": "^1.1.12",
-    "react-particles-js": "^3.2.0",
+    "react-particles-js": "2.4.0",
     "react-scripts": "3.4.1",
     "react-spinners-css": "^1.1.7"
   },
