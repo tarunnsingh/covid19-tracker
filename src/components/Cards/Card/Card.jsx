@@ -47,9 +47,7 @@ const SingleCard = ({ loading, status, lastUpdate, statusName }) => {
         <Typography color="textSecondary">
           {moment(lastUpdate).fromNow()}
         </Typography>
-        <Typography variant="body2">
-          Number of Active cases of Covid-19
-        </Typography>
+        <Typography variant="body2">Total {statusName} of Covid-19</Typography>
       </CardContent>
     </Grid>
   );
