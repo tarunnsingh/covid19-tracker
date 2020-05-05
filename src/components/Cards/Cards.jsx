@@ -5,10 +5,11 @@ import moment from "moment";
 import cx from "classnames";
 import { Circle, Heart } from "react-spinners-css";
 import styles from "./Cards.module.css";
-import Particles from "react-particles-js";
-const particles = require("./particles.json");
 
-const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
+const Cards = ({
+  loading,
+  data: { confirmed, recovered, deaths, lastUpdate }
+}) => {
   if (!confirmed) {
     return (
       <div>
@@ -27,13 +28,11 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
           md={3}
           className={cx(styles.card, styles.infected)}
         >
-        
           <CardContent>
-            
-            
             <Typography color="textSecondary" gutterBottom>
               Infected
             </Typography>
+
             <Typography variant="h5">
               <CountUp
                 start={0}
@@ -49,6 +48,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             <Typography variant="body2">
               Number of Active cases of Covid-19
             </Typography>
+            {loading && <span>Updating Data...</span>}
           </CardContent>
         </Grid>
         <Grid
@@ -77,6 +77,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             <Typography variant="body2">
               Number of Recovered cases of Covid-19
             </Typography>
+            {loading && <span>Updating Data...</span>}
           </CardContent>
         </Grid>
         <Grid
@@ -105,6 +106,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             <Typography variant="body2">
               Number of Deaths from Covid-19
             </Typography>
+            {loading && <span>Updating Data...</span>}
           </CardContent>
         </Grid>
       </Grid>

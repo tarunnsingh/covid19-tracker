@@ -8,7 +8,8 @@ class App extends React.Component {
   state = {
     data: {},
     country: "Worldwide",
-    darkmode: false
+    darkmode: false,
+    loading: false
   };
 
   async componentDidMount() {
@@ -16,6 +17,12 @@ class App extends React.Component {
     this.setState({ data: fetchedData });
     // console.log(this.data);
   }
+
+  handleLoading = () => {
+    this.state.loading
+      ? this.setState({ loading: false })
+      : this.setState({ loading: true });
+  };
 
   handleDarkMode = () => {
     this.state.darkmode
@@ -27,7 +34,7 @@ class App extends React.Component {
     const fetchedData = await fetchData(country);
     console.log(fetchedData);
     if (!country) country = "Worldwide";
-    this.setState({ data: fetchedData, country: country });
+    this.setState({ data: fetchedData, country: country, laoding: false });
   };
 
   render() {
@@ -44,8 +51,10 @@ class App extends React.Component {
           <NavBar handleDarkMode={this.handleDarkMode} />
           <div className={styles.container}>
             {/* <Particles className={styles.particles}/> */}
-            <Cards data={data} />
+            <Cards data={data} loading={this.state.loading} />
             <CountryPicker
+              loading={this.state.loading}
+              handleLoading={this.handleLoading}
               handleCountryChange={this.handleCountryChange}
               selectedCountry={country}
             />

@@ -38,6 +38,9 @@ const NavBar = ({ handleDarkMode }) => {
     setAnchorEl(null);
   };
 
+  const handleSource = () => {
+    window.location.replace("https://github.com/mathdroid/covid-19-api");
+  };
   const handleDarkClick = () => {
     handleClose();
     handleDarkMode();
@@ -75,7 +78,7 @@ const NavBar = ({ handleDarkMode }) => {
             onClose={handleClose}
           >
             <MenuItem onClick={handleClose}>Suggest Us</MenuItem>
-            <MenuItem onClick={handleClose}>Sources</MenuItem>
+            <MenuItem onClick={handleSource}>Sources</MenuItem>
             <MenuItem onClick={handleClose}>Switch API</MenuItem>
             <MenuItem onClick={handleDarkClick}>{mode} Theme</MenuItem>
           </Menu>

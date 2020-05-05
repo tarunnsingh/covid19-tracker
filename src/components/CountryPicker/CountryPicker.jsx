@@ -9,15 +9,26 @@ import {
 import { fetchCountries } from "../../api";
 import styles from "./CountryPicker.module.css";
 
-const CountryPicker = ({ handleCountryChange, selectedCountry }) => {
+const CountryPicker = ({
+  loading,
+  handleLoading,
+  handleCountryChange,
+  selectedCountry
+}) => {
   const [fetchedCountries, setfectchedCountries] = useState([]);
   console.log("Selected Country:", selectedCountry);
+
   useEffect(() => {
     const fetchingCountries = async () => {
       setfectchedCountries(await fetchCountries());
     };
     fetchingCountries();
   }, []);
+
+  const handleOnClick = e => {
+    handleCountryChange(e.target.value);
+    handleLoading();
+  };
 
   return (
     // <div >
@@ -28,7 +39,7 @@ const CountryPicker = ({ handleCountryChange, selectedCountry }) => {
         value={selectedCountry}
         labelId="demo-simple-select-outlined-label"
         id="demo-simple-select-outlined"
-        onChange={e => handleCountryChange(e.target.value)}
+        onChange={e => handleOnClick(e)}
       >
         <MenuItem value="Worldwide">Worldwide</MenuItem>
         {fetchedCountries.map((country, i) => (
@@ -38,7 +49,10 @@ const CountryPicker = ({ handleCountryChange, selectedCountry }) => {
         ))}
       </Select>
       <FormHelperText>
-        Select a country from the list for it's current stats.
+        {!loading && (
+          <div>Select a country from the list for it's current stats.</div>
+        )}
+        {loading && <div>Fetching data...</div>}
       </FormHelperText>
     </FormControl>
     // </div>
