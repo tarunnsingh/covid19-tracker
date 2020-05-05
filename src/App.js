@@ -19,27 +19,24 @@ class App extends React.Component {
   }
 
   handleLoading = () => {
-    this.state.loading
-      ? this.setState({ loading: false })
-      : this.setState({ loading: true });
+    this.setState({ loading: !this.state.loading });
   };
 
   handleDarkMode = () => {
-    this.state.darkmode
-      ? this.setState({ darkmode: false })
-      : this.setState({ darkmode: true });
+    this.setState({ darkmode: !this.state.darkmode });
   };
 
   handleCountryChange = async country => {
     const fetchedData = await fetchData(country);
-    console.log(fetchedData);
+    console.log("fetchedData", fetchedData);
+    console.log("state", this.state);
     if (!country) country = "Worldwide";
-    this.setState({ data: fetchedData, country: country, laoding: false });
+    this.setState({ data: fetchedData, country: country, loading: false });
   };
 
   render() {
     const { data, country } = this.state;
-    console.log("here", this.state);
+    // console.log("here", this.state);
     const theme = createMuiTheme({
       palette: {
         type: this.state.darkmode ? "dark" : "light"
@@ -50,7 +47,6 @@ class App extends React.Component {
         <CssBaseline>
           <NavBar handleDarkMode={this.handleDarkMode} />
           <div className={styles.container}>
-            {/* <Particles className={styles.particles}/> */}
             <Cards data={data} loading={this.state.loading} />
             <CountryPicker
               loading={this.state.loading}

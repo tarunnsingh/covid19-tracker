@@ -49,10 +49,8 @@ const CountryPicker = ({
         ))}
       </Select>
       <FormHelperText>
-        {!loading && (
-          <div>Select a country from the list for it's current stats.</div>
-        )}
-        {loading && <div>Fetching data...</div>}
+        {!loading && `Select a country from the list for it's current stats`}
+        {loading && `Fetching data...`}
       </FormHelperText>
     </FormControl>
     // </div>

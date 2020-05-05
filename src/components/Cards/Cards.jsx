@@ -1,114 +1,39 @@
 import React from "react";
-import { Card, CardContent, Typography, Grid } from "@material-ui/core";
-import CountUp from "react-countup";
-import moment from "moment";
-import cx from "classnames";
-import { Circle, Heart } from "react-spinners-css";
+import { Grid } from "@material-ui/core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Cards.module.css";
+import SingleCard from "./Card/Card";
 
 const Cards = ({
   loading,
   data: { confirmed, recovered, deaths, lastUpdate }
 }) => {
   if (!confirmed) {
-    return (
-      <div>
-        <Circle />
-      </div>
-    );
+    return <FontAwesomeIcon icon={faSpinner} spin />;
   }
-
+  console.log("confiremd", confirmed);
   return (
     <div className={styles.container}>
       <Grid container spacing={3} justify="center">
-        <Grid
-          item
-          component={Card}
-          xs={12}
-          md={3}
-          className={cx(styles.card, styles.infected)}
-        >
-          <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              Infected
-            </Typography>
-
-            <Typography variant="h5">
-              <CountUp
-                start={0}
-                end={confirmed.value}
-                duration={2}
-                separator=","
-                useEasing
-              />
-            </Typography>
-            <Typography color="textSecondary">
-              {moment(lastUpdate).fromNow()}
-            </Typography>
-            <Typography variant="body2">
-              Number of Active cases of Covid-19
-            </Typography>
-            {loading && <span>Updating Data...</span>}
-          </CardContent>
-        </Grid>
-        <Grid
-          item
-          component={Card}
-          xs={12}
-          md={3}
-          className={cx(styles.card, styles.recovered)}
-        >
-          <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              Recovered
-            </Typography>
-            <Typography variant="h5">
-              <CountUp
-                start={0}
-                end={recovered.value}
-                duration={2}
-                separator=","
-                useEasing
-              />
-            </Typography>
-            <Typography color="textSecondary">
-              {moment(lastUpdate).fromNow()}
-            </Typography>
-            <Typography variant="body2">
-              Number of Recovered cases of Covid-19
-            </Typography>
-            {loading && <span>Updating Data...</span>}
-          </CardContent>
-        </Grid>
-        <Grid
-          item
-          component={Card}
-          xs={12}
-          md={3}
-          className={cx(styles.card, styles.deaths)}
-        >
-          <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              Deaths
-            </Typography>
-            <Typography variant="h5">
-              <CountUp
-                start={0}
-                end={deaths.value}
-                duration={2}
-                separator=","
-                useEasing
-              />
-            </Typography>
-            <Typography color="textSecondary">
-              {moment(lastUpdate).fromNow()}
-            </Typography>
-            <Typography variant="body2">
-              Number of Deaths from Covid-19
-            </Typography>
-            {loading && <span>Updating Data...</span>}
-          </CardContent>
-        </Grid>
+        <SingleCard
+          loading={loading}
+          status={confirmed}
+          lastUpdate={lastUpdate}
+          statusName="Confirmed"
+        />
+        <SingleCard
+          loading={loading}
+          status={recovered}
+          lastUpdate={lastUpdate}
+          statusName="Recovered"
+        />
+        <SingleCard
+          loading={loading}
+          status={deaths}
+          lastUpdate={lastUpdate}
+          statusName="Deaths"
+        />
       </Grid>
     </div>
   );
