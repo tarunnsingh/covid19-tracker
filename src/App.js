@@ -1,19 +1,27 @@
 import React, { Fragment } from "react";
 import { Cards, Chart, CountryPicker, NavBar, Particles } from "./components";
-
+import { ThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
 import styles from "./App.module.css";
 import { fetchData } from "./api";
 
 class App extends React.Component {
   state = {
     data: {},
-    country: "Worldwide"
+    country: "Worldwide",
+    darkmode: false
   };
+
   async componentDidMount() {
     const fetchedData = await fetchData();
     this.setState({ data: fetchedData });
     // console.log(this.data);
   }
+
+  handleDarkMode = () => {
+    this.state.darkmode
+      ? this.setState({ darkmode: false })
+      : this.setState({ darkmode: true });
+  };
 
   handleCountryChange = async country => {
     const fetchedData = await fetchData(country);
@@ -24,19 +32,27 @@ class App extends React.Component {
 
   render() {
     const { data, country } = this.state;
+    console.log("here", this.state);
+    const theme = createMuiTheme({
+      palette: {
+        type: this.state.darkmode ? "dark" : "light"
+      }
+    });
     return (
-      <Fragment>
-        <NavBar />
-        <div className={styles.container}>
-          {/* <Particles className={styles.particles}/> */}
-          <Cards data={data} />
-          <CountryPicker
-            handleCountryChange={this.handleCountryChange}
-            selectedCountry={country}
-          />
-          <Chart data={data} country={country} />
-        </div>
-      </Fragment>
+      <ThemeProvider theme={theme}>
+        <CssBaseline>
+          <NavBar handleDarkMode={this.handleDarkMode} />
+          <div className={styles.container}>
+            {/* <Particles className={styles.particles}/> */}
+            <Cards data={data} />
+            <CountryPicker
+              handleCountryChange={this.handleCountryChange}
+              selectedCountry={country}
+            />
+            <Chart data={data} country={country} />
+          </div>
+        </CssBaseline>
+      </ThemeProvider>
     );
   }
 }
