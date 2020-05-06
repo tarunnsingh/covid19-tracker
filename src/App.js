@@ -3,7 +3,6 @@ import { Cards, Chart, CountryPicker, NavBar, Particles } from "./components";
 import { ThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
 import styles from "./App.module.css";
 import { fetchData } from "./api";
-
 class App extends React.Component {
   state = {
     data: {},

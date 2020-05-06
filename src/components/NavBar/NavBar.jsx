@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import cx from "classnames";
+import { SideDrawer } from "./SideDrawer/SideDrawer.jsx";
 
 import styles from "./NavBar.module.css";
 
@@ -51,14 +52,15 @@ const NavBar = ({ handleDarkMode }) => {
     <div className={cx(classes.root, styles)}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          <SideDrawer />
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography variant="h6" className={classes.title}>
             COVID-19 Tracker
           </Typography>
