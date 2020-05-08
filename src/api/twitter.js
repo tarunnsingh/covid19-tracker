@@ -19,7 +19,7 @@ let T = new Twit({
 //   console.log(tweets);
 // });
 
-
+// Branched here
 const stream = T.stream('statuses/filter', { track: '#covid'})
 stream.on('tweet', (tweet) => {
     console.log(tweet.text);
