@@ -14,7 +14,10 @@
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "classnames": "^2.2.6",
+    "franc": "5.0.0",
     "moment": "^2.18.1",
+    "node-notifier": "7.0.0",
+    "open": "7.0.3",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
     "react-countup": "^4.3.3",
@@ -22,7 +25,8 @@
     "react-flags-select": "^1.1.12",
     "react-particles-js": "2.4.0",
     "react-scripts": "3.4.1",
-    "react-spinners-css": "^1.1.7"
+    "react-spinners-css": "^1.1.7",
+    "twit": "2.2.11"
   },
   "scripts": {
     "start": "react-scripts start",
