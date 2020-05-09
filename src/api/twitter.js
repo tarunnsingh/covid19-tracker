@@ -11,17 +11,25 @@ let T = new Twit({
   access_token_secret: creds.accessTokenSecret,
 });
 
-// T.get("search/tweets", { q: "#coronavirus", count: 2000 }, (err, data, response) => {
-//   const tweets = data.statuses
-//     .map((tweet) => `${tweet.text}`)
-//     .filter((tweet) => tweet = franc(tweet) === "eng" ? tweet : null)
-//     .filter((tweet) => tweet.toLowerCase().includes('trump'))
-//   console.log(tweets);
-// });
+const searchTweets = () => {
+  try {
+    T.get("search/tweets", { q: "#coronavirus", count: 2000 }, (err, data, response) => {
+      const tweets = data.statuses
+        .map((tweet) => `${tweet.text}`)
+        .filter((tweet) => tweet = franc(tweet) === "eng" ? tweet : null)
+        .filter((tweet) => tweet.toLowerCase().includes('trump'))
+      console.log(tweets);
+      return tweets;
+    });
+  } catch(error){
+    console.log(err)
+  }
+}
+
 
 // Branched here
-const stream = T.stream('statuses/filter', { track: '#covid'})
-stream.on('tweet', (tweet) => {
-    console.log(tweet.text);
-    console.log('--------')
-})
+// const stream = T.stream('statuses/filter', { track: '#covid'})
+// stream.on('tweet', (tweet) => {
+//     console.log(tweet.text);
+//     console.log('--------')
+// })

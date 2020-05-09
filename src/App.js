@@ -1,8 +1,11 @@
 import React, { Fragment } from "react";
-import { Cards, Chart, CountryPicker, NavBar, Particles } from "./components";
+import { Cards, Chart, CountryPicker, NavBar, Particles, TweetCard } from "./components";
 import { ThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
 import styles from "./App.module.css";
 import { fetchData } from "./api";
+
+
+
 class App extends React.Component {
   state = {
     data: {},
@@ -46,7 +49,10 @@ class App extends React.Component {
         <CssBaseline>
           <NavBar handleDarkMode={this.handleDarkMode} />
           <div className={styles.container}>
+            <div className={styles.column}>
             <Cards data={data} loading={this.state.loading} />
+            </div>
+            <div className={styles.column}>
             <CountryPicker
               loading={this.state.loading}
               handleLoading={this.handleLoading}
@@ -54,6 +60,10 @@ class App extends React.Component {
               selectedCountry={country}
             />
             <Chart data={data} country={country} />
+          </div>
+          </div>
+          <div className={styles.row}>
+            <TweetCard />
           </div>
         </CssBaseline>
       </ThemeProvider>
