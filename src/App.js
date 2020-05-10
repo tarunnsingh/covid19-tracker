@@ -60,7 +60,7 @@ class App extends React.Component {
               <Chart data={data} country={country} />
             </Grid>
 
-            <Grid item xs={12} sm={6}>
+            <Grid item spacing-top={2} xs={12} sm={6} className={styles.item}>
               <CountryPicker
                 loading={this.state.loading}
                 handleLoading={this.handleLoading}

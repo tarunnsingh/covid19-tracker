@@ -18,8 +18,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "40%",
-    display: "inline-grid"
+    width: "70%"
   },
   media: {
     height: 0,
@@ -36,7 +35,8 @@ const useStyles = makeStyles(theme => ({
     transform: "rotate(180deg)"
   },
   avatar: {
-    backgroundColor: red[500]
+    backgroundImage:
+      "https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Twitter_colored_svg-512.png"
   }
 }));
 
@@ -51,23 +51,19 @@ export default function RecipeReviewCard() {
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
-        }
+        avatar={<Avatar className={classes.avatar} />}
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title="Latest tweets with #coronavirus"
+        subheader="Tweets being fetched in real time"
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
+        image="../../images/virus.svg"
+        title="Covid-19 Pandemic"
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -77,7 +73,7 @@ export default function RecipeReviewCard() {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="more">
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">

@@ -6,9 +6,9 @@ body {
   margin: 0.5% !important;
 }
 
-.tweetCard {
-  display: "flex" !important;
-  align-items: "flex-start" !important;
+.item {
+  margin-top: 2% !important;
+  justify-items: center !important;
 }
 
 .particles {

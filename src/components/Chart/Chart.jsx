@@ -36,8 +36,8 @@ const Chart = ({ data, country }) => {
           },
           {
             data: dailyData.map(({ incident }) => incident),
-            label: "IncidntRate",
-            borderColor: "black",
+            label: "Incident Rate",
+            borderColor: "#009688",
             fill: false
           },
           {
@@ -49,6 +49,53 @@ const Chart = ({ data, country }) => {
             hoverBackgroundColor: "rgba(240, 20, 0, 0.5)"
           }
         ]
+      }}
+      options={{
+        cubicInterpolationMode: "monotone",
+        title: {
+          display: true,
+          text: "Worldwide Covid-19 Progress"
+        },
+        tooltips: {
+          callbacks: {
+            label: function(tooltipItem, data) {
+              var label = data.datasets[tooltipItem.datasetIndex].label || "";
+
+              if (label) {
+                label += ": ";
+              }
+              label += Math.round(tooltipItem.yLabel * 100) / 100;
+              return label;
+            }
+          }
+        },
+        responsive: true,
+        responsiveAnimationDuration: 2,
+        spanGaps: true,
+        scales: {
+          xAxes: [
+            {
+              ticks: {
+                autoskip: true,
+                autoSkipPadding: 10
+              },
+              type: "time",
+              time: {
+                displayFormats: {
+                  hour: "h:mm a",
+                  minute: "h:mm a"
+                }
+              }
+            }
+          ],
+          yAxes: [
+            {
+              ticks: {
+                autoskip: true
+              }
+            }
+          ]
+        }
       }}
     />
   ) : null;
