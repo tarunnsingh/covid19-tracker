@@ -1,5 +1,5 @@
 {
-  "name": "covid19",
+  "name": "covid19-tracker-api-connect",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,6 +20,7 @@
     "open": "7.0.3",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
+    "react-chips": "^0.8.0",
     "react-countup": "^4.3.3",
     "react-dom": "^16.13.1",
     "react-flags-select": "^1.1.12",
@@ -48,5 +49,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "keywords": [],
+  "description": ""
 }

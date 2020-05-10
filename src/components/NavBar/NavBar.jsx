@@ -31,6 +31,7 @@ const NavBar = ({ handleDarkMode }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mode, setMode] = React.useState("Dark");
+
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };

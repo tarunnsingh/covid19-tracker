@@ -3,10 +3,12 @@ body {
 }
 
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  margin: 0.5% !important;
+}
+
+.item {
+  margin-top: 2% !important;
+  justify-items: center !important;
 }
 
 .particles {
