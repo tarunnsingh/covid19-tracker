@@ -19,11 +19,15 @@ export const fetchData = async country => {
 
 export const fetchDailyData = async () => {
   try {
-    const { data } = await axios.get(`${url}/daily`);
+    let { data } = await axios.get(`${url}/daily`);
     // console.log(data);
+    console.log(data.length);
+    console.log(data.slice(-50).length);
+    data = data.slice(-60);
     const modifiedDailydata = data.map(dailyData => ({
       confirmed: dailyData.confirmed.total,
       deaths: dailyData.deaths.total,
+      incident: dailyData.incidentRate,
       date: dailyData.reportDate
     }));
     return modifiedDailydata;

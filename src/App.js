@@ -1,10 +1,14 @@
 import React, { Fragment } from "react";
-import { Cards, Chart, CountryPicker, NavBar, Particles, TweetCard } from "./components";
-import { ThemeProvider, createMuiTheme, CssBaseline } from "@material-ui/core";
+import { Cards, Chart, CountryPicker, NavBar, TweetCard } from "./components";
+import {
+  ThemeProvider,
+  createMuiTheme,
+  CssBaseline,
+  Grid
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import styles from "./App.module.css";
 import { fetchData } from "./api";
-
-
 
 class App extends React.Component {
   state = {
@@ -38,33 +42,34 @@ class App extends React.Component {
 
   render() {
     const { data, country } = this.state;
-    // console.log("here", this.state);
+
     const theme = createMuiTheme({
       palette: {
         type: this.state.darkmode ? "dark" : "light"
       }
     });
+
     return (
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <NavBar handleDarkMode={this.handleDarkMode} />
-          <div className={styles.container}>
-            <div className={styles.column}>
-            <Cards data={data} loading={this.state.loading} />
-            </div>
-            <div className={styles.column}>
-            <CountryPicker
-              loading={this.state.loading}
-              handleLoading={this.handleLoading}
-              handleCountryChange={this.handleCountryChange}
-              selectedCountry={country}
-            />
-            <Chart data={data} country={country} />
-          </div>
-          </div>
-          <div className={styles.row}>
-            <TweetCard />
-          </div>
+          <Grid container spacing={3} className={styles.container}>
+            <Grid item xs={12} sm={6}>
+              <Cards data={data} loading={this.state.loading} />
+
+              <Chart data={data} country={country} />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <CountryPicker
+                loading={this.state.loading}
+                handleLoading={this.handleLoading}
+                handleCountryChange={this.handleCountryChange}
+                selectedCountry={country}
+              />
+              <TweetCard />
+            </Grid>
+          </Grid>
         </CssBaseline>
       </ThemeProvider>
     );

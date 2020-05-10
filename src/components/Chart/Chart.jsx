@@ -35,6 +35,12 @@ const Chart = ({ data, country }) => {
             fill: true
           },
           {
+            data: dailyData.map(({ incident }) => incident),
+            label: "IncidntRate",
+            borderColor: "black",
+            fill: false
+          },
+          {
             data: dailyData.map(({ deaths }) => deaths),
             label: "Deaths",
             borderColor: "red",

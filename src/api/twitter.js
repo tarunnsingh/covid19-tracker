@@ -8,24 +8,27 @@ let T = new Twit({
   consumer_key: creds.apikey,
   consumer_secret: creds.apiSecretKey,
   access_token: creds.accessToken,
-  access_token_secret: creds.accessTokenSecret,
+  access_token_secret: creds.accessTokenSecret
 });
 
 const searchTweets = () => {
   try {
-    T.get("search/tweets", { q: "#coronavirus", count: 2000 }, (err, data, response) => {
-      const tweets = data.statuses
-        .map((tweet) => `${tweet.text}`)
-        .filter((tweet) => tweet = franc(tweet) === "eng" ? tweet : null)
-        .filter((tweet) => tweet.toLowerCase().includes('trump'))
-      console.log(tweets);
-      return tweets;
-    });
-  } catch(error){
-    console.log(err)
+    T.get(
+      "search/tweets",
+      { q: "#coronavirus", count: 2000 },
+      (err, data, response) => {
+        const tweets = data.statuses
+          .map(tweet => `${tweet.text}`)
+          .filter(tweet => (tweet = franc(tweet) === "eng" ? tweet : null))
+          .filter(tweet => tweet.toLowerCase().includes("trump"));
+        console.log(tweets);
+        return tweets;
+      }
+    );
+  } catch (error) {
+    console.log(error);
   }
-}
-
+};
 
 // Branched here
 // const stream = T.stream('statuses/filter', { track: '#covid'})
