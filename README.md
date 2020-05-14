@@ -10,4 +10,4 @@ Note: Bootstrapped with [Create React App](https://github.com/facebook/create-re
 3. Type ```npm run start``` to start the server.
 4. Go to localhost:3000 to visit the site.
 
-## Further documentation to be added...
+## Further documentation to be added.
