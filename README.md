@@ -1,5 +1,5 @@
 # Covid-19 Tracker
-## Breif
+## Breif :book:
 Pulls data, static as well as time series and plots Line and Bar Charts on ReactJS.
 Updating latest tweets on Covid soon...
 
