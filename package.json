@@ -16,7 +16,7 @@
     "classnames": "^2.2.6",
     "franc": "5.0.0",
     "moment": "^2.18.1",
-    "node-notifier": "7.0.0",
+    "node-notifier": "8.0.1",
     "open": "7.0.3",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
